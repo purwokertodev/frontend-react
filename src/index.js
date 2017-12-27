@@ -1,12 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Form, Icon } from 'antd';
+import { InputText } from '../src/components/input-text';
 
 class Welcome extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      name: 'Purwokerto Group',
+      name: '',
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -16,11 +18,36 @@ class Welcome extends React.Component {
   }
   render() {
     return (
-      <div style={{ textAlign: 'center' }}>
-        <h1>Welcome</h1>
-        <p>Hello {this.state.name}</p>
-        <input onChange={this.handleChange} defaultValue={this.state.name} />
-      </div>
+      <Form layout="horizontal">
+        <InputText
+          id="username"
+          label="Username"
+          placeholder="Input Username"
+          onChange={this.handleChange}
+          value={this.state.name}
+          prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
+          labelCol={{ span: 4 }}
+          wrapperCol={{ span: 14 }}
+          required
+        />
+        <InputText
+          id="address"
+          label="Address"
+          mode="textarea"
+          placeholder="Input Address"
+          labelCol={{ span: 4 }}
+          wrapperCol={{ span: 14 }}
+          required
+        />
+        <InputText
+          id="searchUsername"
+          placeholder="Search Username"
+          mode="search"
+          onSearch={e => console.log(e)}
+          enterButton={false}
+          defaultValue={this.state.name}
+        />
+      </Form>
     );
   }
 }
