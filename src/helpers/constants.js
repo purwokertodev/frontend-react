@@ -1,6 +1,6 @@
-export const setTarget = (name, value) => ({
+export const setTarget = (id, value) => ({
   target: {
-    name,
+    id,
     value,
   },
 });
