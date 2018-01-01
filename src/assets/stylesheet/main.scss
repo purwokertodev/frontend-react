@@ -1,9 +1,23 @@
-$primary-color: #333;
+$border-color: #D9D9D9;
+$border-radius: 4px;
 
-body {
-  color: $primary-color;
-}
+.antd-tag-input {
+  background-color: #FFF;
+  border: 1px solid $border-color {
+    radius: $border-radius;
+  };
+  line-height: normal;
+  padding: 8px 0 8px 7px;
 
-.kkk {
-  color: rgba(187, 25, 25, 0.015);
+  input {
+    background: transparent;
+    border: 0;
+    width: 97px;
+
+    &:focus {
+      border-color: transparent;
+      outline: 0;
+      box-shadow: none;
+    }
+  }
 }

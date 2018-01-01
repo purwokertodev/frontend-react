@@ -49,7 +49,7 @@ export const InputSelect = ({
           {data.value}
         </Select.Option>
       );
-    })
+    });
   }
 
   return (
