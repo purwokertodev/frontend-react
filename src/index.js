@@ -8,6 +8,7 @@ import {
 } from '../src/components/input-text';
 import { InputSelect } from '../src/components/input-select';
 import { InputTags } from '../src/components/input-tags';
+import { InputDate } from '../src/components/input-date';
 import { setTarget } from '../src/helpers/constants';
 import 'antd/dist/antd.css';
 
@@ -22,15 +23,20 @@ class Welcome extends React.Component {
         hobbies: '1',
         tvChannel: [],
         tags: [],
+        dateOfBirth: null,
+        startDate: null,
+        endDate: null,
       },
       error: {
         name: '',
         address: '',
         hobbies: '',
         tvChannel: 'Harus Diisi',
+        dateOfBirth: '',
       },
       name: '',
       tagValue: '',
+      openCalendar: false,
       hobbies: [
         {id: '1', value: 'Membaca Buku/Novel'},
         {id: '2', value: 'Mendengarkan Lagu'},
@@ -147,6 +153,65 @@ class Welcome extends React.Component {
           onPressEnter={this.onCreateTags}
           onHandleClose={this.onRemoveTags}
           value={this.state.tagValue}
+          labelCol={{ span: 4 }}
+          wrapperCol={{ span: 14 }}
+        />
+        <InputDate
+          label="Date of Birth"
+          placeholder="Select date"
+          value={this.state.form.dateOfBirth}
+          onChange={(date) => {
+            this.onChange(setTarget('dateOfBirth', date), 'form')
+          }}
+          labelCol={{ span: 4 }}
+          wrapperCol={{ span: 14 }}
+        />
+        <InputDate
+          label="Start Date"
+          placeholder="Select start date"
+          value={this.state.form.startDate}
+          onChange={(date) => {
+            this.onChange(setTarget('startDate', date), 'form')
+          }}
+          onOpenChange={(value) => {
+            if (!value) {
+              this.setState({ openCalendar: true });
+            }
+          }}
+          disabledDate={(startValue) => {
+            const endValue = this.state.form.endDate;
+            if (!startValue || !endValue) {
+              return false;
+            }
+            return startValue.valueOf() > endValue.valueOf();
+          }}
+          showTime
+          format="DD MMM YYYY HH:mm:ss"
+          labelCol={{ span: 4 }}
+          wrapperCol={{ span: 14 }}
+        />
+        <InputDate
+          label="End Date"
+          placeholder="Select end date"
+          value={this.state.form.endDate}
+          onChange={(date) => {
+            this.onChange(setTarget('endDate', date), 'form')
+          }}
+          onOpenChange={(value) => {
+            this.setState({ openCalendar: value });
+          }}
+          disabledDate={(endValue) => {
+            const startValue = this.state.form.startDate;
+            if (!endValue || !startValue) {
+              return false;
+            }
+            return endValue.valueOf() <= startValue.valueOf();
+          }}
+          properties={{
+            open: this.state.openCalendar,
+          }}
+          showTime
+          format="DD MMM YYYY HH:mm:ss"
           labelCol={{ span: 4 }}
           wrapperCol={{ span: 14 }}
         />
