@@ -1,29 +1,7 @@
 # Scaffolding for react
-Frontend-React Scaffolding Using [React](https://reactjs.org/), [webpack v3](https://webpack.js.org/), and [sass](http://sass-lang.com/). Using [Ant Design](https://ant.design/) for based component.
+ReactJS Scaffolding (Webpack 3, sass, postcss, antd)
 
-## How to start
-* Open your terminal
-* Clone or download this repository to your directory folder.
-* Change it into your installation folder.
-* Install dependencies via `npm install`.
-* Run project by `npm start`.
-* Open your browser and hit http://localhost:8080/.
-
-## Script
-* `npm start` run for development.
-* `npm run build` build for production.
-
-## Components
-
-* [x] Input text
-* [x] Input textarea
-* [x] Input Search
-* [x] Input Select Option (Single and Multivalue)
-* [x] Input Tag
-* [x] Input Date (Single Date)
-
-## What's next
-* [ ] Input Date (Range Picker)
-
-
-For more information how to used components, please visit [antdesign documentation](https://ant.design/docs/react/introduce)
+# How to start
+1. npm install
+2. npm run start
+3. open your browser and hit localhost:8080 into your address bar 
