@@ -38,18 +38,18 @@ class Welcome extends React.Component {
       tagValue: '',
       openCalendar: false,
       hobbies: [
-        {id: '1', value: 'Membaca Buku/Novel'},
-        {id: '2', value: 'Mendengarkan Lagu'},
-        {id: '3', value: 'Bermain Games'},
-        {id: '4', value: 'Lainnya'},
+        { id: '1', value: 'Membaca Buku/Novel' },
+        { id: '2', value: 'Mendengarkan Lagu' },
+        { id: '3', value: 'Bermain Games' },
+        { id: '4', value: 'Lainnya' },
       ],
       tvChannel: [
-        {id: '1', value: 'Super Sentai Series'},
-        {id: '2', value: 'Kamen Rider Series'},
-        {id: '3', value: 'Tom & Jerry'},
-        {id: '4', value: 'Naruto Shippuden'},
-        {id: '5', value: 'Laptop Si Unyil'},
-        {id: '6', value: 'Upin - Ipin'},
+        { id: '1', value: 'Super Sentai Series' },
+        { id: '2', value: 'Kamen Rider Series' },
+        { id: '3', value: 'Tom & Jerry' },
+        { id: '4', value: 'Naruto Shippuden' },
+        { id: '5', value: 'Laptop Si Unyil' },
+        { id: '6', value: 'Upin - Ipin' },
       ],
     };
 
@@ -161,7 +161,7 @@ class Welcome extends React.Component {
           placeholder="Select date"
           value={this.state.form.dateOfBirth}
           onChange={(date) => {
-            this.onChange(setTarget('dateOfBirth', date), 'form')
+            this.onChange(setTarget('dateOfBirth', date), 'form');
           }}
           labelCol={{ span: 4 }}
           wrapperCol={{ span: 14 }}
@@ -171,7 +171,7 @@ class Welcome extends React.Component {
           placeholder="Select start date"
           value={this.state.form.startDate}
           onChange={(date) => {
-            this.onChange(setTarget('startDate', date), 'form')
+            this.onChange(setTarget('startDate', date), 'form');
           }}
           onOpenChange={(value) => {
             if (!value) {
@@ -195,7 +195,7 @@ class Welcome extends React.Component {
           placeholder="Select end date"
           value={this.state.form.endDate}
           onChange={(date) => {
-            this.onChange(setTarget('endDate', date), 'form')
+            this.onChange(setTarget('endDate', date), 'form');
           }}
           onOpenChange={(value) => {
             this.setState({ openCalendar: value });

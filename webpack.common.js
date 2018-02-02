@@ -1,7 +1,5 @@
 const path = require('path');
-const webpack = require('webpack');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
-const DashboardPlugin = require('webpack-dashboard/plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
@@ -13,11 +11,11 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'js/main.js',
+    publicPath: '/'
   },
   resolve: {
     extensions: ['.js', '.jsx'],
   },
-  devtool: 'cheap-module-eval-source-map',
   module: {
     rules: [
       {
@@ -47,21 +45,11 @@ module.exports = {
       },
     ]
   },
-  devServer: {
-    contentBase: path.resolve(__dirname, "dist"),
-    noInfo: true,
-    compress: true,
-    hot: true,
-    inline: true,
-    historyApiFallback: true,
-  },
   plugins: [
-    new webpack.HotModuleReplacementPlugin(),
     new CleanWebpackPlugin(['dist'], {
       verbose: true,
       dry: false,
     }),
-    // new DashboardPlugin(),
     new ExtractTextPlugin({
       filename: 'css/main.css'
     }),
