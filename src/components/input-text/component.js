@@ -164,6 +164,7 @@ export const InputTextArea = ({
         onFocus={onFocus}
         disabled={disabled}
         defaultValue={defaultValue}
+        value={value}
         autosize={autosize}
       />
     </Form.Item>

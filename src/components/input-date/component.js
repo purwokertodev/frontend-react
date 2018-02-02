@@ -13,7 +13,6 @@ export const InputDate = ({
   labelCol,
   onChange,
   onOpenChange,
-  open,
   placeholder,
   properties,
   required,
@@ -25,7 +24,6 @@ export const InputDate = ({
 }) => {
   let showValidationStatus = '';
   let showValidationMessage = '';
-  let showOption = [];
 
   if (error) {
     showValidationStatus = 'error';

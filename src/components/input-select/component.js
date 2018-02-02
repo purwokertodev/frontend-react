@@ -39,7 +39,7 @@ export const InputSelect = ({
   }
 
   if (children.length > 0) {
-    children.map(data => {
+    children.map((data) => {
       return showOption.push(
         <Select.Option
           key={data.id}

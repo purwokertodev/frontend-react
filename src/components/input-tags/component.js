@@ -19,7 +19,6 @@ export const InputTags = ({
   ref,
   required,
   size,
-  style,
   success,
   tags,
   value,
@@ -27,7 +26,6 @@ export const InputTags = ({
 }) => {
   let showValidationStatus = '';
   let showValidationMessage = '';
-  let showTags = null;
 
   if (error) {
     showValidationStatus = 'error';
@@ -50,7 +48,7 @@ export const InputTags = ({
       wrapperCol={wrapperCol}
     >
       <div className={`antd-tag-input ${className}`}>
-        {tags.map((tag, index) => {
+        {tags.map((tag) => {
           const isLongTag = tag.length > 20;
           const tagElem = (
             <Tag key={tag} closable color={color} afterClose={onHandleClose}>
@@ -66,6 +64,7 @@ export const InputTags = ({
           size={size}
           value={value}
           onChange={onChange}
+          onFocus={onFocus}
           onBlur={onBlur}
           onPressEnter={onPressEnter}
         />
@@ -91,7 +90,6 @@ InputTags.propTypes = {
   ref: PropTypes.func,
   required: PropTypes.bool,
   size: PropTypes.string,
-  style: PropTypes.object,
   success: PropTypes.string,
   tags: PropTypes.array.isRequired,
   value: PropTypes.string,
@@ -115,7 +113,6 @@ InputTags.defaultProps = {
   ref: () => {},
   required: false,
   size: 'small',
-  style: {},
   success: '',
   tags: [],
   value: null,

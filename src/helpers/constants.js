@@ -7,4 +7,4 @@ export const setTarget = (id, value) => ({
 
 export default {
   setTarget,
-}
+};
