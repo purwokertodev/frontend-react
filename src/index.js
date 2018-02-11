@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import moment from 'moment';
 import { Form, Icon } from 'antd';
 import {
   InputText,
@@ -8,9 +9,8 @@ import {
 } from '../src/components/input-text';
 import { InputSelect } from '../src/components/input-select';
 import { InputTags } from '../src/components/input-tags';
-import { InputDate } from '../src/components/input-date';
+import { InputDate, InputDateRange } from '../src/components/input-date';
 import { setTarget } from '../src/helpers/constants';
-import 'antd/dist/antd.css';
 
 class Welcome extends React.Component {
   constructor(props) {
@@ -26,6 +26,7 @@ class Welcome extends React.Component {
         dateOfBirth: null,
         startDate: null,
         endDate: null,
+        rangePicker: null,
       },
       error: {
         name: '',
@@ -212,6 +213,18 @@ class Welcome extends React.Component {
           }}
           showTime
           format="DD MMM YYYY HH:mm:ss"
+          labelCol={{ span: 4 }}
+          wrapperCol={{ span: 14 }}
+        />
+        <InputDateRange
+          label="Range Picker"
+          placeholder={['Start Time', 'End Time']}
+          value={this.state.form.rangePicker}
+          onChange={(date) => {
+            this.onChange(setTarget('rangePicker', date), 'form');
+          }}
+          format="DD MMM YYYY"
+          ranges={{ Today: [moment(), moment()], 'This Month': [moment(), moment().endOf('month')] }}
           labelCol={{ span: 4 }}
           wrapperCol={{ span: 14 }}
         />

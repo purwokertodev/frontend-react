@@ -7,14 +7,7 @@
   "plugins": [
     "transform-class-properties",
     "transform-decorators-legacy",
-    "transform-runtime",
-    ["import",
-      {
-        "libraryName": "antd",
-        "libraryDirectory": "es",
-        "style": "css"
-      }
-    ]
+    "transform-runtime"
   ],
   "env": {
     "test": {
