@@ -1,32 +1,26 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Form, Select } from 'antd';
+import { Form, InputNumber } from 'antd';
 
-export const InputSelect = ({
+export const InputNumbers = ({
   id,
-  childrens,
+  name,
   colon,
   defaultValue,
+  disabled,
   error,
-  filterOption,
   label,
   labelCol,
-  mode,
-  onBlur,
   onChange,
-  onFocus,
-  onSearch,
   placeholder,
+  properties,
   required,
   size,
-  showSearch,
   success,
-  value,
   wrapperCol,
 }) => {
   let showValidationStatus = '';
   let showValidationMessage = '';
-  let showOption = [];
 
   if (error) {
     showValidationStatus = 'error';
@@ -37,21 +31,6 @@ export const InputSelect = ({
     showValidationStatus = 'success';
     showValidationMessage = success;
   }
-
-  if (childrens.length > 0) {
-    childrens.map((data) => {
-      return showOption.push(
-        <Select.Option
-          key={data.id}
-          title={data.value}
-          value={data.id}
-        >
-          {data.value}
-        </Select.Option>
-      );
-    });
-  }
-
   return (
     <Form.Item
       colon={colon}
@@ -62,81 +41,56 @@ export const InputSelect = ({
       validateStatus={showValidationStatus}
       wrapperCol={wrapperCol}
     >
-      <Select
+      <InputNumber
         id={id}
+        name={name}
         placeholder={placeholder}
-        mode={mode}
-        showSearch={showSearch}
-        onBlur={onBlur}
         onChange={onChange}
-        onFocus={onFocus}
-        onSearch={onSearch}
+        disabled={disabled}
         defaultValue={defaultValue}
-        value={value}
         size={size}
-        filterOption={filterOption}
-      >
-        {showOption}
-      </Select>
+        {...properties}
+      />
     </Form.Item>
   );
 };
 
-InputSelect.propTypes = {
+InputNumbers.propTypes = {
   id: PropTypes.string.isRequired,
-  childrens: PropTypes.array.isRequired,
+  name: PropTypes.string.isRequired,
   colon: PropTypes.bool,
-  defaultValue: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.array,
-  ]),
+  defaultValue: PropTypes.number,
+  disabled: PropTypes.bool,
   error: PropTypes.string,
-  filterOption: PropTypes.oneOfType([
-    PropTypes.bool,
-    PropTypes.func,
-  ]),
   label: PropTypes.string,
   labelCol: PropTypes.object,
-  mode: PropTypes.string,
-  onBlur: PropTypes.func,
   onChange: PropTypes.func,
-  onFocus: PropTypes.func,
-  onSearch: PropTypes.func,
   placeholder: PropTypes.string,
+  properties: PropTypes.object,
   required: PropTypes.bool,
   size: PropTypes.string,
-  showSearch: PropTypes.bool,
   success: PropTypes.string,
-  value: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.array,
-  ]),
   wrapperCol: PropTypes.object,
 };
 
-InputSelect.defaultProps = {
+InputNumbers.defaultProps = {
   id: '',
-  childrens: [],
+  name: '',
   colon: false,
-  defaultValue: null,
+  defaultValue: 0,
+  disabled: false,
   error: '',
-  filterOption: true,
   label: '',
   labelCol: {},
-  mode: '',
-  onBlur: () => {},
   onChange: () => {},
-  onFocus: () => {},
-  onSearch: () => {},
   placeholder: '',
+  properties: {},
   required: false,
   size: 'default',
-  showSearch: false,
   success: '',
-  value: null,
   wrapperCol: {},
 };
 
 export default {
-  InputSelect,
+  InputNumbers,
 };

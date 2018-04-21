@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Form, Tag, Input, Tooltip } from 'antd';
+import { Form, Tag, Icon, Input, Tooltip } from 'antd';
 
 export const InputTags = ({
   id,
@@ -8,6 +8,7 @@ export const InputTags = ({
   colon,
   color,
   error,
+  inputVisible,
   label,
   labelCol,
   onBlur,
@@ -15,8 +16,9 @@ export const InputTags = ({
   onFocus,
   onHandleClose,
   onPressEnter,
+  onTagClick,
   placeholder,
-  ref,
+  refs,
   required,
   size,
   success,
@@ -47,7 +49,7 @@ export const InputTags = ({
       validateStatus={showValidationStatus}
       wrapperCol={wrapperCol}
     >
-      <div className={`antd-tag-input ${className}`}>
+      <div className={className}>
         {tags.map((tag) => {
           const isLongTag = tag.length > 20;
           const tagElem = (
@@ -57,17 +59,28 @@ export const InputTags = ({
           );
           return isLongTag ? <Tooltip title={tag} key={tag}>{tagElem}</Tooltip> : tagElem;
         })}
-        <Input
-          id={id}
-          ref={ref}
-          placeholder={placeholder}
-          size={size}
-          value={value}
-          onChange={onChange}
-          onFocus={onFocus}
-          onBlur={onBlur}
-          onPressEnter={onPressEnter}
-        />
+        {inputVisible && (
+          <Input
+            id={id}
+            ref={refs}
+            placeholder={placeholder}
+            size={size}
+            style={{ width: 78 }}
+            value={value}
+            onChange={onChange}
+            onFocus={onFocus}
+            onBlur={onBlur}
+            onPressEnter={onPressEnter}
+          />
+        )}
+        {!inputVisible && (
+          <Tag
+            onClick={onTagClick}
+            style={{ background: '#fff', borderStyle: 'dashed' }}
+          >
+            <Icon type="plus" /> New Tag
+          </Tag>
+        )}
       </div>
     </Form.Item>
   );
@@ -79,6 +92,7 @@ InputTags.propTypes = {
   colon: PropTypes.bool,
   color: PropTypes.string,
   error: PropTypes.string,
+  inputVisible: PropTypes.bool,
   label: PropTypes.string,
   labelCol: PropTypes.object,
   onBlur: PropTypes.func,
@@ -86,8 +100,9 @@ InputTags.propTypes = {
   onFocus: PropTypes.func,
   onHandleClose: PropTypes.func,
   onPressEnter: PropTypes.func,
+  onTagClick: PropTypes.func,
   placeholder: PropTypes.string,
-  ref: PropTypes.func,
+  refs: PropTypes.func,
   required: PropTypes.bool,
   size: PropTypes.string,
   success: PropTypes.string,
@@ -102,6 +117,7 @@ InputTags.defaultProps = {
   colon: false,
   color: '',
   error: '',
+  inputVisible: false,
   label: '',
   labelCol: {},
   onBlur: () => {},
@@ -109,8 +125,9 @@ InputTags.defaultProps = {
   onFocus: () => {},
   onHandleClose: () => {},
   onPressEnter: () => {},
+  onTagClick: () => {},
   placeholder: '',
-  ref: () => {},
+  refs: () => {},
   required: false,
   size: 'small',
   success: '',
