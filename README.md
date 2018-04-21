@@ -17,6 +17,7 @@ Frontend-React Scaffolding Using [React](https://reactjs.org/), [webpack v3](htt
 
 * [x] Input text
 * [x] Input textarea
+* [x] Input Number Only
 * [x] Input Search
 * [x] Input Select Option (Single and Multivalue)
 * [x] Input Tag
@@ -24,7 +25,7 @@ Frontend-React Scaffolding Using [React](https://reactjs.org/), [webpack v3](htt
 * [x] Input Date (Range Picker)
 
 ## What's next
-* [ ] Input Number Only
+* [ ] Main Layout
 
 
 For more information how to used components, please visit [antdesign documentation](https://ant.design/docs/react/introduce)

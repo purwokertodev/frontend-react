@@ -7,6 +7,7 @@ import {
   InputTextArea,
   InputSearch,
 } from '../src/components/input-text';
+import { InputNumbers } from '../src/components/input-number';
 import { InputSelect } from '../src/components/input-select';
 import { InputTags } from '../src/components/input-tags';
 import { InputDate, InputDateRange } from '../src/components/input-date';
@@ -27,6 +28,9 @@ class Welcome extends React.Component {
         startDate: null,
         endDate: null,
         rangePicker: null,
+        weight: 0.0,
+        number: 0,
+        price: 1000,
       },
       error: {
         name: '',
@@ -37,6 +41,7 @@ class Welcome extends React.Component {
       },
       name: '',
       tagValue: '',
+      inputVisible: false,
       openCalendar: false,
       hobbies: [
         { id: '1', value: 'Membaca Buku/Novel' },
@@ -84,6 +89,7 @@ class Welcome extends React.Component {
         tags,
       }),
       tagValue: '',
+      inputVisible: false,
     });
   }
   onRemoveTags(value) {
@@ -123,7 +129,7 @@ class Welcome extends React.Component {
         <InputSelect
           id="hobbies"
           label="Hobbies"
-          children={this.state.hobbies}
+          childrens={this.state.hobbies}
           onChange={e => this.onChange(setTarget('hobbies', e), 'form')}
           value={this.state.form.hobbies}
           labelCol={{ span: 4 }}
@@ -135,7 +141,7 @@ class Welcome extends React.Component {
           label="Favorite TV Channel"
           mode="multiple"
           placeholder="Select your favorite TV channel's"
-          children={this.state.tvChannel}
+          childrens={this.state.tvChannel}
           onChange={e => this.onChange(setTarget('tvChannel', e), 'form')}
           value={this.state.form.tvChannel}
           error={this.state.error.tvChannel}
@@ -144,15 +150,19 @@ class Welcome extends React.Component {
           required
         />
         <InputTags
+          refs={inputag => this.inputag = inputag}
           id="favoriteFood"
           label="Favorite Food"
           color="geekblue"
-          placeholder="Add a tag"
+          inputVisible={this.state.inputVisible}
           tags={this.state.form.tags}
           onChange={e => this.setState({ tagValue: e.target.value })}
           onBlur={this.onCreateTags}
           onPressEnter={this.onCreateTags}
           onHandleClose={this.onRemoveTags}
+          onTagClick={() => {
+            this.setState({ inputVisible: true }, () => this.inputag.focus());
+          }}
           value={this.state.tagValue}
           labelCol={{ span: 4 }}
           wrapperCol={{ span: 14 }}
@@ -225,6 +235,46 @@ class Welcome extends React.Component {
           }}
           format="DD MMM YYYY"
           ranges={{ Today: [moment(), moment()], 'This Month': [moment(), moment().endOf('month')] }}
+          labelCol={{ span: 4 }}
+          wrapperCol={{ span: 14 }}
+        />
+        <InputNumbers
+          id="weight"
+          name="weight"
+          label="Weight"
+          defaultValue={this.state.form.weight}
+          properties={{
+            min: 0,
+            max: 10,
+            step: 0.1,
+          }}
+          onChange={value => console.log(value)}
+          labelCol={{ span: 4 }}
+          wrapperCol={{ span: 14 }}
+        />
+        <InputNumbers
+          id="number"
+          name="number"
+          label="Number"
+          defaultValue={this.state.form.number}
+          properties={{
+            min: 0,
+            max: 10,
+          }}
+          onChange={value => console.log(value)}
+          labelCol={{ span: 4 }}
+          wrapperCol={{ span: 14 }}
+        />
+        <InputNumbers
+          id="price"
+          name="price"
+          label="Price"
+          defaultValue={this.state.form.price}
+          properties={{
+            formatter: value => `$ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ','),
+            parser: value => value.replace(/\$\s?|(,*)/g, ''),
+          }}
+          onChange={value => console.log(value)}
           labelCol={{ span: 4 }}
           wrapperCol={{ span: 14 }}
         />

@@ -28,7 +28,11 @@
     "no-plusplus": 0,
     "no-unused-vars": [2, { "ignoreRestSiblings": true }],
     "no-underscore-dangle": 0,
-    "space-before-function-paren": [2, "always"],
+    "space-before-function-paren": ["error", {
+      "anonymous": "always",
+      "named": "never",
+      "asyncArrow": "never"
+    }],
     "semi": [2, "always"],
     "import/no-extraneous-dependencies": 0,
     "import/prefer-default-export": 0,
